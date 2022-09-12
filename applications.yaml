@@ -2,17 +2,17 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: helm-template
-  namespace: default
+  namespace: argocd
 spec:
   generators:
   - list:
       elements:
       - namespace: dev
-        url: https://kubernetes.default.svc
+        filepath: values-dev.yaml 
       - namespace: test
-        url: https://kubernetes.default.svc
+        filepath: values-prod.yaml 
       - namespace: uat
-        url: https://kubernetes.default.svc
+        filepath: values-uat.yaml
 
   template:
     metadata:
@@ -20,18 +20,18 @@ spec:
     spec:
       project: default
       syncPolicy:
-      automated:
-        prune: true
-        selfHeal: true
-      syncOptions:
-        - CreateNamespace=true
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
       source:
         repoURL: 'https://github.com/speedygamer12/helm-template'
         targetRevision: HEAD
         path: helm-template                
         helm:
           valueFiles:
-            - 'values-{{namespace}}.yml'
+            - '{{filepath}}'
       destination:
         server: 'https://kubernetes.default.svc'
-        namespace: '{{namespace}}'
+        namespace: 'default'
