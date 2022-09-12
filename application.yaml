@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: helm-template
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/speedygamer12/helm-template.git
+    targetRevision: HEAD
+    path: helm-template
+    helm:
+      valueFiles:
+        - values.yaml
+        - values-prod.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: prod
