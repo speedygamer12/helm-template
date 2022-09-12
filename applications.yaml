@@ -2,6 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: helm-template
+  namespace: default
 spec:
   generators:
   - list:
@@ -15,16 +16,22 @@ spec:
 
   template:
     metadata:
-      name: '{{ namespace }}'
+      name: 'helm-template-{{namespace}}'
     spec:
       project: default
+      syncPolicy:
+      automated:
+        prune: true
+        selfHeal: true
+      syncOptions:
+        - CreateNamespace=true
       source:
-        path: helm-template
-        repoURL: https://github.com/speedygamer12/helm-template.git
+        repoURL: 'https://github.com/speedygamer12/helm-template'
         targetRevision: HEAD
+        path: helm-template                
         helm:
           valueFiles:
-            - 'values-{{ namespace }}.yml'
+            - 'values-{{namespace}}.yml'
       destination:
-        server: '{{ url }}'
-        namespace: '{{ namespace }}'
+        server: 'https://kubernetes.default.svc'
+        namespace: '{{namespace}}'

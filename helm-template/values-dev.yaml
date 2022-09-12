@@ -3,6 +3,7 @@
 # Declare variables to be passed into your templates.
 
 configVolume: "green"
+namespace: dev
 
 replicaCount: 1
 image:
