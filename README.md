@@ -15,14 +15,16 @@ NGINX served static page using kubernetes objects. packaged with Helm, and deplo
 `cd helm-template`
 
 ### To deploy:
-| namespace| `command` |
-| default name space | `kubectl apply -f application.yaml` |
-| multiple name space | `kubectl apply -f applications.yaml` |
+| namespace             | `command`                             |
+| ----------------------| ------------------------------------- |
+| default name space    | `kubectl apply -f application.yaml`   |
+| multiple name space   | `kubectl apply -f applications.yaml`  |
 
 ### Get deployment urls:
-- `minkube service list`
+View webages of different namespaces generating different pages
+`minkube service list`
 
-### To access env variable
+### To access environment variables from secret
 run:
 `kubectl get pod --namespace default`
 for each pods, run:
