@@ -1,7 +1,7 @@
 # Helm Project
 
-## What is this project
-NGINX served static page using kubernetes objects. packaged with Helm, and deployed with ArgoCD to different namespaces
+## What is this project? 
+NGINX served static page using kubernetes objects. packaged with Helm, and deployed with ArgoCD to different namespaces. 
 
 ## Features
 - Multiple namespaces created
