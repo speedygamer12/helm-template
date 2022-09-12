@@ -34,4 +34,4 @@ spec:
             - '{{filepath}}'
       destination:
         server: 'https://kubernetes.default.svc'
-        namespace: 'default'
+        namespace: '{{namespace}}'
