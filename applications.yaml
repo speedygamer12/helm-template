@@ -2,7 +2,6 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: helm-template
-  namespace: argocd
 spec:
   generators:
   - list:
@@ -16,7 +15,7 @@ spec:
 
   template:
     metadata:
-      name: '{{"{{"}}namespace{{"}}"}}'
+      name: '{{ namespace }}'
     spec:
       project: default
       source:
@@ -25,8 +24,7 @@ spec:
         targetRevision: HEAD
         helm:
           valueFiles:
-            - values.yaml
-            - values-{{"{{"}}namespace{{"}}"}}.yaml
+            - 'values-{{ namespace }}.yml'
       destination:
-        server: '{{"{{"}}url{{"}}"}}'
-        namespace: '{{"{{"}}namespace{{"}}"}}'
+        server: '{{ url }}'
+        namespace: '{{ namespace }}'
