@@ -23,8 +23,14 @@ spec:
         automated:
           prune: true
           selfHeal: true
+        retry:
+          backoff:
+            duration: 10s
+            factor: 2
+            maxDuration: 15m
         syncOptions:
           - CreateNamespace=true
+          - PruneLast=true
       source:
         repoURL: 'https://github.com/speedygamer12/helm-template'
         targetRevision: HEAD
