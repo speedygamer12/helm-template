@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: green-web-{{ .Release.Name }}-configmap
+data:
+  index.html: |-
+{{ .Files.Get "green/index.html" | indent 4}}
