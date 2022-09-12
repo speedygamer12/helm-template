@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: helm-template
-  namespace: argocd
+  namespace: name: '{{"{{"}}namespace{{"}}"}}'
 spec:
   generators:
   - list:
@@ -24,7 +24,6 @@ spec:
         repoURL: https://github.com/speedygamer12/helm-template.git
         targetRevision: HEAD
         helm:
-          releaseName: helm-template
           valueFiles:
             - values.yaml
             - values-{{"{{"}}namespace{{"}}"}}.yaml
