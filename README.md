@@ -29,3 +29,8 @@ run:
 `kubectl get pod --namespace default`
 for each pods, run:
 `kubectl exec <<pod_name>> -- env | grep secret-key`
+
+## Improvements
+- Restructure code to create each configmaps from one manifest.
+- Write bash code in the container command to render the secrets env var on the static page.
+- Restructure the deployment manifest to ensure only one configmap is created for the different name-spaces. 
