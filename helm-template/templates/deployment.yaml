@@ -35,6 +35,12 @@ spec:
           volumeMounts:
           - mountPath: /usr/share/nginx/html
             name: web-config
+          env:
+          - name: secret-key
+            valueFrom:
+              secretKeyRef:
+                name: container-secret
+                key: {{ .Values.secretKey}}
           livenessProbe:
             httpGet:
               path: /
