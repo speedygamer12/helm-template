@@ -1,8 +1,8 @@
-# Default values for kube-task-chart.
+# Default values for helm-template.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-configVolume: "green"
+configVolume: "blue"
 
 replicaCount: 1
 image:
